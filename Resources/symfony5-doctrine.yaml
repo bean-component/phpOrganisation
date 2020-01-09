@@ -1,0 +1,89 @@
+doctrine:
+    dbal:
+        url: '%env(resolve:DATABASE_URL)%'
+        types:
+            geography:
+                class: 'Jsor\Doctrine\PostGIS\Types\GeographyType'
+                commented: false
+            geometry:
+                class: 'Jsor\Doctrine\PostGIS\Types\GeometryType'
+                commented: false
+            raster:
+                class: 'Jsor\Doctrine\PostGIS\Types\RasterType'
+                commented: false
+
+        # IMPORTANT: You MUST configure your server version,
+        # either here or in the DATABASE_URL env var (see .env file)
+        #server_version: '5.7'
+    orm:
+        auto_generate_proxy_classes: true
+        entity_managers:
+            default:
+                naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+                auto_mapping: true
+                mappings:
+                    App:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src-symfony/Entity'
+                        prefix: 'App\Entity'
+                        alias: App
+                    Bean\Organisation\Doctrine\Orm:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/doctrine/Orm/Entity'
+                        prefix: 'Bean\Organisation\Doctrine\Orm\Entity'
+                        alias: Bean\Organisation\Doctrine
+                #                    Bean\Thing\Doctrine:
+                #                        is_bundle: false
+                #                        type: annotation
+                #                        dir: '%kernel.project_dir%/vendor/bean-component/php-thing/doctrine/Orm'
+                #                        prefix: 'Bean\Thing\Doctrine\Orm'
+                #                        alias: Bean\Thing\Doctrine
+
+                dql:
+                    numeric_functions:
+                        acos: DoctrineExtensions\Query\Mysql\Acos
+                        asin: DoctrineExtensions\Query\Mysql\Asin
+                        atan2: DoctrineExtensions\Query\Mysql\Atan2
+                        atan: DoctrineExtensions\Query\Mysql\Atan
+                        ceil: DoctrineExtensions\Query\Mysql\Ceil
+                        cos: DoctrineExtensions\Query\Mysql\Cos
+                        cot: DoctrineExtensions\Query\Mysql\Cot
+                        floor: DoctrineExtensions\Query\Mysql\Floor
+                        hour: DoctrineExtensions\Query\Mysql\Hour
+                        pi: DoctrineExtensions\Query\Mysql\Pi
+                        power: DoctrineExtensions\Query\Mysql\Power
+                        quarter: DoctrineExtensions\Query\Mysql\Quarter
+                        rand: DoctrineExtensions\Query\Mysql\Rand
+                        round: DoctrineExtensions\Query\Mysql\Round
+                        sin: DoctrineExtensions\Query\Mysql\Sin
+                        std: DoctrineExtensions\Query\Mysql\Std
+                        tan: DoctrineExtensions\Query\Mysql\Tan
+                    string_functions:
+                        ascii: DoctrineExtensions\Query\Mysql\Ascii
+                        binary: DoctrineExtensions\Query\Mysql\Binary
+                        char_length: DoctrineExtensions\Query\Mysql\CharLength
+                        concat_ws: DoctrineExtensions\Query\Mysql\ConcatWs
+                        countif: DoctrineExtensions\Query\Mysql\CountIf
+                        crc32: DoctrineExtensions\Query\Mysql\Crc32
+                        degrees: DoctrineExtensions\Query\Mysql\Degrees
+                        field: DoctrineExtensions\Query\Mysql\Field
+                        find_in_set: DoctrineExtensions\Query\Mysql\FindInSet
+                        group_concat: DoctrineExtensions\Query\Mysql\GroupConcat
+                        ifelse: DoctrineExtensions\Query\Mysql\IfElse
+                        ifnull: DoctrineExtensions\Query\Mysql\IfNull
+                        least: DoctrineExtensions\Query\Mysql\Least
+                        match_against: DoctrineExtensions\Query\Mysql\MatchAgainst
+                        md5: DoctrineExtensions\Query\Mysql\Md5
+                        month: DoctrineExtensions\Query\Mysql\Month
+                        monthname: DoctrineExtensions\Query\Mysql\MonthName
+                        nullif: DoctrineExtensions\Query\Mysql\NullIf
+                        radians: DoctrineExtensions\Query\Mysql\Radians
+                        regexp: DoctrineExtensions\Query\Mysql\Regexp
+                        replace: DoctrineExtensions\Query\Mysql\Replace
+                        sha1: DoctrineExtensions\Query\Mysql\Sha1
+                        sha2: DoctrineExtensions\Query\Mysql\Sha2
+                        soundex: DoctrineExtensions\Query\Mysql\Soundex
+                        substring_index: DoctrineExtensions\Query\Mysql\SubstringIndex
+                        uuid_short: DoctrineExtensions\Query\Mysql\UuidShort
