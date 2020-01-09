@@ -3,6 +3,7 @@
 namespace Bean\Organisation\Model;
 
 use Bean\Thing\Model\Thing;
+use Doctrine\Common\Collections\Collection;
 
 class Organisation extends Thing
 {
@@ -58,9 +59,9 @@ class Organisation extends Thing
     }
 
     /**
-     * @return self[]
+     * @return Collection|self[]
      */
-    public function getSubOrganisations()
+    public function getSubOrganisations(): Collection
     {
         return $this->subOrganisations;
     }
