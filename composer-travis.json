@@ -34,15 +34,15 @@
     },
     "autoload": {
         "psr-4": {
-            "Bean\\Geolocation\\": "src/"
+            "Bean\\Organisation\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "App\\": "src-symfony/",
             "Bean\\Thing\\Doctrine\\": "vendor/bean-component/php-thing/doctrine/",
-            "Bean\\Geolocation\\Doctrine\\": "doctrine/",
-            "Bean\\Tests\\Geolocation\\": "tests/"
+            "Bean\\Organisation\\Doctrine\\": "doctrine/",
+            "Bean\\Tests\\Organisation\\": "tests/"
         }
     },
     "replace": {
