@@ -6,8 +6,6 @@ use Doctrine\Common\Collections\Collection;
 
 interface OrganisationInterface
 {
-    public function getId(): ?int;
-
     public function getSubdomain(): ?string;
 
     public function setSubdomain(?string $subdomain): OrganisationInterface;
