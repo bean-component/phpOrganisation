@@ -3,10 +3,23 @@
 namespace Bean\Organisation\Model;
 
 use Bean\Thing\Model\Thing;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
-class Organisation extends Thing
+class Organisation extends Thing implements OrganisationInterface
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->individualMembers = new ArrayCollection();
+        $this->subOrganisations = new ArrayCollection();
+    }
+
+    /**
+     * NOT part of schema.org
+     * @var Collection
+     */
+    protected $individualMembers;
 
     /**
      * NOT part of schema.org
@@ -18,14 +31,14 @@ class Organisation extends Thing
     /**
      * The larger organization that this organization is a subOrganization of, if any. Supersedes branchOf.
      *    Inverse property: subOrganization.
-     * @var Organisation|null
+     * @var OrganisationInterface|null
      */
     protected $parentOrganisation;
 
     /**
      * A relationship between two organizations where the first includes the second, e.g., as a subsidiary. See also: the more specific 'department' property.
      *    Inverse property: parentOrganization.
-     * @var array|null
+     * @var Collection
      */
     protected $subOrganisations;
 
@@ -39,19 +52,19 @@ class Organisation extends Thing
         return $this->subdomain;
     }
 
-    public function setSubdomain(?string $subdomain): self
+    public function setSubdomain(?string $subdomain): OrganisationInterface
     {
         $this->subdomain = $subdomain;
 
         return $this;
     }
 
-    public function getParentOrganisation(): ?self
+    public function getParentOrganisation(): ?OrganisationInterface
     {
         return $this->parentOrganisation;
     }
 
-    public function setParentOrganisation(?self $parentOrganisation): self
+    public function setParentOrganisation(?OrganisationInterface $parentOrganisation): OrganisationInterface
     {
         $this->parentOrganisation = $parentOrganisation;
 
@@ -59,14 +72,14 @@ class Organisation extends Thing
     }
 
     /**
-     * @return Collection|self[]
+     * @return Collection|OrganisationInterface[]
      */
     public function getSubOrganisations(): Collection
     {
         return $this->subOrganisations;
     }
 
-    public function addSubOrganisation(self $subOrganisation): self
+    public function addSubOrganisation(OrganisationInterface $subOrganisation): OrganisationInterface
     {
         if (!$this->subOrganisations->contains($subOrganisation)) {
             $this->subOrganisations[] = $subOrganisation;
@@ -76,13 +89,44 @@ class Organisation extends Thing
         return $this;
     }
 
-    public function removeSubOrganisation(self $subOrganisation): self
+    public function removeSubOrganisation(OrganisationInterface $subOrganisation): OrganisationInterface
     {
         if ($this->subOrganisations->contains($subOrganisation)) {
             $this->subOrganisations->removeElement($subOrganisation);
             // set the owning side to null (unless already changed)
             if ($subOrganisation->getParentOrganisation() === $this) {
                 $subOrganisation->setParentOrganisation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|IndividualMemberInterface[]
+     */
+    public function getIndividualMembers(): Collection
+    {
+        return $this->individualMembers;
+    }
+
+    public function addIndividualMember(IndividualMemberInterface $individualMember): OrganisationInterface
+    {
+        if (!$this->individualMembers->contains($individualMember)) {
+            $this->individualMembers[] = $individualMember;
+            $individualMember->setOrganisation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIndividualMember(IndividualMemberInterface $individualMember): OrganisationInterface
+    {
+        if ($this->individualMembers->contains($individualMember)) {
+            $this->individualMembers->removeElement($individualMember);
+            // set the owning side to null (unless already changed)
+            if ($individualMember->getOrganisation() === $this) {
+                $individualMember->setOrganisation(null);
             }
         }
 

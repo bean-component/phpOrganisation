@@ -11,12 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Organisation extends \Bean\Organisation\Model\Organisation
 {
-    function __construct()
-    {
-        parent::__construct();
-        $this->subOrganisations = new ArrayCollection();
-    }
-
     /**
      * @var integer|null
      * @ORM\Id()
