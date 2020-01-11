@@ -13,8 +13,9 @@ interface IndividualMemberInterface extends ThingInterface
 
     /**
      * @param OrganisationInterface|null $organisation
+     * @return IndividualMemberInterface
      */
-    public function setOrganisation(?OrganisationInterface $organisation): void;
+    public function setOrganisation(?OrganisationInterface $organisation): IndividualMemberInterface;
 
     /**
      * @return array
@@ -23,6 +24,7 @@ interface IndividualMemberInterface extends ThingInterface
 
     /**
      * @param array $roles
+     * @return IndividualMemberInterface
      */
-    public function setRoles(array $roles): void;
+    public function setRoles(array $roles): IndividualMemberInterface;
 }
