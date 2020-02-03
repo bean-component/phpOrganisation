@@ -42,7 +42,7 @@ class OrganisationTest extends KernelTestCase
         $loc->setSlug('magenta-location');
 
         $loc->setName('Trivex Building, Singapore');
-        $loc->setStatus(Thing::STATUS_PUBLISHED);
+        $loc->setState(Thing::STATE_PUBLISHED);
         $now = $loc->getCreatedAt();
         $now->setTimezone(new \DateTimeZone('Asia/Singapore'));
         $loc->setDescription($now->format('Y-m-d H:i:s'));

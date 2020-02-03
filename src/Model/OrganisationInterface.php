@@ -2,9 +2,10 @@
 
 namespace Bean\Organisation\Model;
 
+use Bean\Thing\Model\ThingInterface;
 use Doctrine\Common\Collections\Collection;
 
-interface OrganisationInterface
+interface OrganisationInterface extends ThingInterface
 {
     public function getSubdomain(): ?string;
 
