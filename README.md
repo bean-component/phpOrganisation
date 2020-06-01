@@ -22,3 +22,4 @@ Run these commands
   - cp -R -f Resources/symfony5-services.yaml config/services.yaml
   - cp -R -f Resources/symfony5-routes-annotations.yaml config/routes/annotations.yaml
   - cp -R -f Resources/form/Symfony/templates templates
+  - cp Resources/symfony5-phpunit.xml.dist ./

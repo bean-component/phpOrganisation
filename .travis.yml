@@ -63,6 +63,7 @@ install:
   - mv src/Kernel.php src-symfony/
   - mv -f Resources/symfony5-doctrine.yaml config/packages/doctrine.yaml
   - mv -f Resources/symfony5-services.yaml config/services.yaml
+  - mv -f Resources/symfony5-phpunit.xml.dist phpunit.xml.dist
   - mv -f Resources/symfony5-routes-annotations.yaml config/routes/annotations.yaml
   - ./bin/phpunit install
 
