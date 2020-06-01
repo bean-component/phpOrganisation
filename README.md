@@ -21,4 +21,4 @@ Run these commands
   - cp -R -f Resources/symfony5-doctrine.yaml config/packages/doctrine.yaml
   - cp -R -f Resources/symfony5-services.yaml config/services.yaml
   - cp -R -f Resources/symfony5-routes-annotations.yaml config/routes/annotations.yaml
-  - cp -R -f form/Symfony/templates templates
+  - cp -R -f Resources/form/Symfony/templates templates
